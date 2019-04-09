@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Which We Bare Bears bear are you?</title>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Kreon');
+
+body {
+background-color: lightblue;
+font-family: Kreon;
+font-size: 22px;
+}
+
+#main {
+width: 60%;
+border: 1px gray solid;
+margin: auto;
+padding: 10px;
+background-color: white;
+border-radius: 10px;
+}
+
+#header {
+margin-top: 0;
+border: 2px solid black;
+padding: 5px;
+height: 290px;
+}
+
+label {
+width: 260px;
+display: inline-block;
+font-size: 16px;
+}
+
+button {
+display: block;
+margin-top: 30px;
+
+}
+
+
+
+
+</style>
+</head>
+<body>
+<div id="main">
+<div id="header">
+<center> <img src = "fullwebare.jpg"> 
+<h1> Which We Bare Bears bear are you?</h1> </center>
+</div>
+
+<form  id="form1">
+<p><script>
+first = prompt("Enter your first name!");
+document.getElementById('firstname').innerHTML = first; 
+</script>
+
+<p>Which describes you best?</p>
+<label><input type="radio" name="des" id="outgoing" value="grizzly" />Outgoing most of the time</label>
+<label><input type="radio" name="des" id="sometimes" value="panda" />Sometimes outgoing, sometimes shy</label>
+<label><input type="radio" name="des" id="shy" value="icebear" />Shy most of the time</label>
+
+<p>What are you most likely to be doing in your free time?</p>
+<label><input type="radio" name="activity" id="skills" value="icebear" />Perfecting as many skills as I can</label>
+<label><input type="radio" name="activity" id="outdoors" value="grizzly" />Outdoor activites</label>
+<label><input type="radio"  name="activity"id="social" value="panda" />Scrolling through social media</label>
+
+<p>How are you most likely to react to an awkward situation?</p>
+<label><input type="radio" name="reac" id="embarrased" value="panda" />Get embarrased and stay silent</label>
+<label><input type="radio" name="reac" id="calm" value="icebear" />Stay cool and get through it</label>
+<label><input type="radio" name="reac" id="talk" value="grizzly" />Try to talk my way out of it, not always successfully</label>
+
+<p>If you could improve one, which would it be?</p>
+<label><input type="radio" name="improve" id="memory" value="panda" />Memory</label>
+<label><input type="radio" name="improve" id="pf" value="icebear" />Appearance</label>
+<label><input type="radio" name="improve" id="strength" value="grizzly" />Strength</label>
+
+<p>Which is most similar to the the conditions you need for good sleep?</p>
+<label><input type="radio" name="sleep" id="cold" value="icebear" />A cold room</label>
+<label><input type="radio" name="sleep" id="comfy" value="grizzly" />Just a comfy bed</label>
+<label><input type="radio" name="sleep" id="trusty" value="panda" />My trusty pillow or stuffed animal</label>
+
+<p>Which is most important to you?</p>
+<label><input type="radio" name="important" id="fame" value="panda" />Fame</label>
+<label><input type="radio" name="important" id="food" value="grizzly" />Food</label>
+<label><input type="radio" name="important" id="family" value="icebear" />Family</label>
+
+<p>What is your weapon of choice?</p>
+<label><input type="radio" name="weapon" id="silence" value="grizzly" />My Words</label>
+<label><input type="radio" name="weapon" id="mouth" value="icebear" />An actual weapon</label>
+<label><input type="radio" name="weapon" id="axe" value="panda" />Silence</label>
+
+<button type="submit" value="Submit">Submit</button>
+</form>
+
+<p id="answer"></p>
+<p id="answer2"></p>
+<p id="answer3"></p>
+<p id="answer4"></p>
+
+</div>
+<script>
+ 
+    
+	document.getElementById("form1").onsubmit=function() {
+	   
+	  des = document.querySelector('input[name = "des"]:checked').value;
+	   
+	  
+	  activity = document.querySelector('input[name = "activity"]:checked').value;
+	   
+	  reac = document.querySelector('input[name = "reac"]:checked').value;
+
+	  improve = document.querySelector('input[name = "improve"]:checked').value;
+
+	  sleep = document.querySelector('input[name = "sleep"]:checked').value;
+
+	  important = document.querySelector('input[name = "important"]:checked').value;
+	    
+  	  weapon = document.querySelector('input[name = "weapon"]:checked').value;
+
+	  // initialize score variables 
+	  grizzly = 0;
+	  panda = 0;
+	  icebear = 0;
+	  
+	  //function to calculate score for each question
+	  function eachscore(x){
+	  if(x == "grizzly") { grizzly = grizzly + 1}
+	  if(x == "panda") { panda = panda + 1}
+	  if(x == "icebear") { icebear = icebear + 1}
+	  }
+	  // for the above function, you could also change the 1 to a variable so you could give more points for certain questions
+	  
+	  //call function for each question
+	  eachscore(eval("des"));
+	  eachscore(eval("activity"));
+	  eachscore(eval("reac"));
+	  eachscore(eval("improve"));
+	  eachscore(eval("sleep"));
+	  eachscore(eval("important"));
+	  eachscore(eval("weapon"));
+	  
+	  
+	  
+	  all = [grizzly, panda, icebear];
+	  
+	//get the max score  in the array
+	maxscore = Math.max.apply(Math,all);
+	
+    //figure out which score is the max score by identifying its index number
+	for(i=0; i<all.length; i++) {
+	if(all[i]==maxscore) {
+	highest = i;
+	}
+	}
+	
+
+// object holding scores and feedback	
+scores = [
+{index:0, feedback: "<img src='grizzly.jpg' width='300'/><br>" + first + ", you got Grizzly! Grizzly, or Grizz for short, is the oldest brother of the three bears. He is the leader of the group. He is very outgoing and wants to be friends with anyone he meets. He tends to get into a lot of trouble because of his mouth and plans of his that don't go right. As a grizzly bear, Grizz loves all types of food and can sometimes love it a little too... much. "},
+{index:1, feedback: "<img src='panda.jpg' width='300'/><br>" + first + ", you got Panda! Panda, or Pan Pan as called by Grizz, is socially awkward with most people, but once he is comfortable with someone, he is very friendly and talkative. Panda loves his phone, social media, and Japanese culture. His goal in life is to get a girlfriend or be famous on social media."},
+{index:2, feedback: "<img src='icebear.jpg' width='300'/><br>" + first + ", you got Ice Bear! Ice Bear is the youngest of the three bears and is very quiet. He speaks in third person and expresses himself with very few words. He is very good at cooking, as well as other many skills, and carries around an axe for defense. He is usually very friendly, but is not to be crossed or else his axe will come out."}];
+
+
+//loop to match index to score and reply with feedback
+for(i=0;i<scores.length; i++) {
+if(highest == scores[i].index) {
+document.getElementById("answer4").innerHTML = scores[i].feedback;
+}
+}
+
+	   
+
+
+
+		   
+	   return false; // required to not refresh the page; just leave this here
+	   }// end the submit function
+	
+
+</script>
+
+
+
+</body>
+</html>
